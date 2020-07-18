@@ -1,8 +1,9 @@
-const Course = require('../Schemas/Course.js');
+const Course = require('../schemas/Course.js');
 
 let controllerC = 
 {
     getCourses: async() => {
+
         try 
         {
           let courses = await Course.find({});
@@ -19,6 +20,21 @@ let controllerC =
         let course = await Course.findById(args.id);
         return course;
   
+    },
+    createCourse: async(root, { input }) => {
+
+      try 
+      {
+        let course = new Course(input);
+        let courseDB = await course.save();
+
+        return courseDB;
+      }
+      catch(error) 
+      {
+        console.log(error);
+      }
+      
     }
 }
 
