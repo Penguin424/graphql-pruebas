@@ -35,6 +35,17 @@ let controllerC =
         console.log(error);
       }
       
+    },
+    editCourse: async(root, {id, input}) => 
+    {
+      try 
+      {
+        let   
+      } 
+      catch (error)
+      {
+        
+      }
     }
 }
 
