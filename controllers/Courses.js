@@ -40,11 +40,14 @@ let controllerC =
     {
       try 
       {
-        let   
+        let course = await Course.findByIdAndUpdate(id, input);
+        let courseUPDATEDB = await course.save();
+
+        return courseUPDATEDB
       } 
       catch (error)
       {
-        
+        console.log(error);
       }
     }
 }

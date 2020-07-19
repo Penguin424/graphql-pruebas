@@ -33,6 +33,11 @@ input StudentInput {
   email: String!
 }
 
+input StudentEditInput {
+  name: String
+  email: String
+}
+
 type Query {
   "Devuelve todos cursos"
   getCourses: [Course]
@@ -55,4 +60,6 @@ type Mutation{
 
   "Crea un Estudiante"
   createStudent(input: StudentInput): Student
+  "Actualiza un Estudiante"
+  editStudent(id: ID!, input: StudentEditInput): Student
 }

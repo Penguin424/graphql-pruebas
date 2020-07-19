@@ -40,6 +40,20 @@ let controllerS =
         {
             console.log(error);
         }
+    },
+    editStudent: async(root, {id, input}) => 
+    {
+        try 
+        {
+            let student = await Student.findByIdAndUpdate(id, input);
+            let studentUPDATEDB = await student.save();
+            
+            return studentUPDATEDB;
+        } 
+        catch(error) 
+        {
+            console.log(error);
+        }
     }
 
 }
