@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Student = require('../models/Student.js');
 
 const Schema = mongoose.Schema;
 
@@ -14,6 +15,11 @@ let courseSchema = new Schema({
     },
     topic:{
         type: String
+    },
+    students:{
+        type: [{type: Schema.Types.ObjectId, ref: 'students'}],
+        required: false
+        
     }
 });
 

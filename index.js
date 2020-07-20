@@ -7,19 +7,15 @@ const { readFileSync } = require('fs')
 const { join } = require('path')
 const resolvers = require('./lib/resolvers')
 const { connect } = require('mongoose');
+const { readArch } = require('./lib/graphql');
 
 const app = express()
 const port = process.env.port || 3000
 
-const typeDefs  =readFileSync(
-  join(__dirname, 'lib', 'schema.graphql'),
-  'utf-8'
-);
-
 // definiendo el esquema
 const schema = makeExecutableSchema(
   {
-    typeDefs,
+    typeDefs: readArch,
     resolvers
   }
 )

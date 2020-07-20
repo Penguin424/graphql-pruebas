@@ -1,4 +1,4 @@
-const Student = require('../schemas/Student.js');
+const Student = require('../models/Student.js');
 
 let controllerS = 
 {

@@ -1,4 +1,4 @@
-const Course = require('../schemas/Course.js');
+const Course = require('../models/Course.js');
 
 let controllerC = 
 {
@@ -6,7 +6,9 @@ let controllerC =
 
         try 
         {
-          let courses = await Course.find({});
+          let courses = await Course.find({}).populate({
+            path: 'students'            
+          });
           return courses;  
         } 
         catch(error) 
@@ -17,7 +19,9 @@ let controllerC =
     },
     getCourse: async(root, args) => {
   
-        let course = await Course.findById(args.id);
+        let course = await Course.findById(args.id).populate({
+          path: 'students'
+        });
         return course;
   
     },
@@ -49,7 +53,22 @@ let controllerC =
       {
         console.log(error);
       }
-    }
+    },
+    addStudentAtCourse: async(root, {idCourse, idEstudent}) => {
+      try 
+      {
+        let courseAddUpadte = await Course.findByIdAndUpdate(idCourse, {
+          $push: {students: idEstudent}
+        });
+        let courseUPDATEDB = await courseAddUpadte.save();
+
+        return courseUPDATEDB
+      } 
+      catch(error) 
+      {
+        console.log(error);
+      }
+    } 
 }
 
 module.exports = {controllerC};
